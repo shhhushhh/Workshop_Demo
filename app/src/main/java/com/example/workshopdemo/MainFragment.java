@@ -74,9 +74,9 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
                 Fragment generateFragment = new PageFragment();
                 Bundle bundle = new Bundle();
-//                bundle.putBoolean("activateTutorial", activateTutorial);
                 generateFragment.setArguments(bundle);
-                getParentFragmentManager().beginTransaction().replace(R.id.pageFragmentFrame, generateFragment).addToBackStack( "generate_poem" ).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.mainPageFrame, generateFragment).addToBackStack( "generate_poem" ).commit();
+//                getParentFragmentManager().hide
             }
         });
     }
