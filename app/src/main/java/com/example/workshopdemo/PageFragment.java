@@ -5,11 +5,17 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +33,10 @@ public class PageFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private Button addClubButton;
+    protected List<Club> clubs;
+    protected PageAdapter adapter;
+    private RecyclerView rvClubs;
 
     public PageFragment() {
         // Required empty public constructor
@@ -64,6 +74,28 @@ public class PageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_page, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        addClubButton = view.findViewById(R.id.addClubButton);
+
+        rvClubs = view.findViewById(R.id.rvClubs);
+        clubs = new ArrayList<>();
+        adapter = new PageAdapter(view.getContext(), clubs);
+        rvClubs.setAdapter(adapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
+        rvClubs.setLayoutManager(linearLayoutManager);
+//                rvPosts.smoothScrollToPosition(0);
+        addClubButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText userInput = view.findViewById(R.id.tieClub);
+                String clubName = userInput.getText().toString();
+                clubs.add(new Club(clubName));
+                adapter.notifyItemInserted(clubs.size() - 1);
+            }
+        });
     }
 
 }

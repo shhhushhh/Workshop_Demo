@@ -72,11 +72,8 @@ public class MainFragment extends Fragment {
         mainPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment generateFragment = new PageFragment();
-                Bundle bundle = new Bundle();
-                generateFragment.setArguments(bundle);
-                getParentFragmentManager().beginTransaction().replace(R.id.mainPageFrame, generateFragment).addToBackStack( "generate_poem" ).commit();
-//                getParentFragmentManager().hide
+                Fragment pageFragment = new PageFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.fragmentFrame, pageFragment).addToBackStack( "change_page" ).commit();
             }
         });
     }
