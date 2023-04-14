@@ -5,7 +5,7 @@
     android:id="@+id/pageFragmentFrame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PageFragment">
+    tools:context=".fragments.PageFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
